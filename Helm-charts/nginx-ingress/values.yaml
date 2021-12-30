@@ -1,6 +1,6 @@
 ## nginx configuration
 ## Ref: https://github.com/kubernetes/ingress-nginx/blob/main/docs/user-guide/nginx-configuration/index.md
-##
+##  
 
 ## Overrides for generated resource names
 # See templates/_helpers.tpl
@@ -96,7 +96,7 @@ controller:
   # This section refers to the creation of the IngressClass resource
   # IngressClass resources are supported since k8s >= 1.18 and required since k8s >= 1.19
   ingressClassResource:
-    name: nginx
+    name: external-nginx
     enabled: true
     default: false
     controllerValue: "k8s.io/ingress-nginx"
@@ -332,7 +332,7 @@ controller:
   ##
   podAnnotations: {}
 
-  replicaCount: 1
+  replicaCount: 2
 
   minAvailable: 1
 
@@ -447,7 +447,7 @@ controller:
     ## List of IP addresses at which the controller services are available
     ## Ref: https://kubernetes.io/docs/user-guide/services/#external-ips
     ##
-    externalIPs: []
+    externalIPs: [192.168.25.3, 192.168.25.5]
 
     # loadBalancerIP: ""
     loadBalancerSourceRanges: []
