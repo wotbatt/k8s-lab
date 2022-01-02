@@ -665,13 +665,13 @@ grafana:
     hosts: [grafana.wotbatt.com]
 
     ## Path for grafana ingress
-    path: [/]
+    path: ["/"]
 
     ## TLS configuration for grafana Ingress
     ## Secret must be manually created in the namespace
     ##
-    tls: [ingress-cert]
-    # - secretName: grafana-general-tls
+    tls: ["ingress-cert"]
+    # - secretName: ingress-cert
     #   hosts:
     #   - grafana.example.com
 
