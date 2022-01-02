@@ -622,9 +622,21 @@ alertmanager:
 grafana:
   enabled: true
   namespaceOverride: ""
+  storageSpec: {}
+    ## Using PersistentVolumeClaim
+    ##
+  volumeClaimTemplate:
+     spec:
+       storageClassName: local-storage
+       accessModes: ["ReadWriteOnce"]
+       resources:
+         requests:
+           storage: 20Gi
+    #    selector: {}
 
   ## ForceDeployDatasources Create datasource configmap even if grafana deployment has been disabled
-  ##
+
+ 
   forceDeployDatasources: false
 
   ## ForceDeployDashboard Create dashboard configmap even if grafana deployment has been disabled
