@@ -662,7 +662,7 @@ grafana:
     ##
     # hosts:
     #   - grafana.domain.com
-    hosts: [grafana.wotbatt.com]
+    hosts: ["grafana.wotbatt.com"]
 
     ## Path for grafana ingress
     path: ["/"]
