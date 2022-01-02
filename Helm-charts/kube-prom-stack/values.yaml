@@ -206,7 +206,7 @@ alertmanager:
   #       {{ end }}
 
   ingress:
-    enabled: true
+    enabled: false
 
     # For Kubernetes >= 1.18 you should specify the ingress-controller via the field ingressClassName
     # See https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#specifying-the-class-of-an-ingress
@@ -218,12 +218,12 @@ alertmanager:
 
     ## Hosts must be provided if Ingress is enabled.
     ##
-    hosts: [grafana.wotbatt.com]
+    hosts: []
       # - alertmanager.domain.com
 
     ## Paths to use for ingress rules - one path should match the alertmanagerSpec.routePrefix
     ##
-    paths: [/]
+    paths: []
     # - /
 
     ## For Kubernetes >= 1.18 you should specify the pathType (determines how Ingress paths should be matched)
@@ -233,7 +233,7 @@ alertmanager:
     ## TLS configuration for Alertmanager Ingress
     ## Secret must be manually created in the namespace
     ##
-    tls: [ingress-cert]
+    tls: []
     # - secretName: alertmanager-general-tls
     #   hosts:
     #   - alertmanager.example.com
@@ -476,14 +476,14 @@ alertmanager:
     ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/user-guides/storage.md
     ##
     storage: {}
-    # volumeClaimTemplate:
-    #   spec:
-    #     storageClassName: gluster
-    #     accessModes: ["ReadWriteOnce"]
-    #     resources:
-    #       requests:
-    #         storage: 50Gi
-    #   selector: {}
+    volumeClaimTemplate:
+      spec:
+        storageClassName: local-storage
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 15Gi
+    #  selector: {}
 
 
     ## The external URL the Alertmanager instances will be available under. This is necessary to generate correct URLs. This is necessary if Alertmanager is not served from root of a DNS name. string  false
@@ -665,7 +665,7 @@ grafana:
     hosts: [grafana.wotbatt.com]
 
     ## Path for grafana ingress
-    path: /
+    path: [/]
 
     ## TLS configuration for grafana Ingress
     ## Secret must be manually created in the namespace
@@ -1913,7 +1913,7 @@ prometheus:
   #     someoneelse:$apr1$DMZX2Z4q$6SbQIfyuLQd.xmo/P0m2c.
 
   ingress:
-    enabled: true
+    enabled: false
 
     # For Kubernetes >= 1.18 you should specify the ingress-controller via the field ingressClassName
     # See https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#specifying-the-class-of-an-ingress
@@ -1927,11 +1927,11 @@ prometheus:
     ##
     # hosts:
     #   - prometheus.domain.com
-    hosts: [prometheus.wotbatt.com]
+    hosts: []
 
     ## Paths to use for ingress rules - one path should match the prometheusSpec.routePrefix
     ##
-    paths: [/]
+    paths: []
     # - /
 
     ## For Kubernetes >= 1.18 you should specify the pathType (determines how Ingress paths should be matched)
@@ -1941,7 +1941,7 @@ prometheus:
     ## TLS configuration for Prometheus Ingress
     ## Secret must be manually created in the namespace
     ##
-    tls: [ingress-cert]
+    tls: []
       # - secretName: prometheus-general-tls
       #   hosts:
       #     - prometheus.example.com
@@ -1979,7 +1979,7 @@ prometheus:
 
     ## Secret name containing the TLS certificate for Prometheus per replica ingress
     ## Secret must be manually created in the namespace
-    tlsSecretName: "ingress-cert"
+    tlsSecretName: ""
 
     ## Separated secret for each per replica Ingress. Can be used together with cert-manager
     ##
@@ -2361,13 +2361,13 @@ prometheus:
     storageSpec: {}
     ## Using PersistentVolumeClaim
     ##
-    #  volumeClaimTemplate:
-    #    spec:
-    #      storageClassName: gluster
-    #      accessModes: ["ReadWriteOnce"]
-    #      resources:
-    #        requests:
-    #          storage: 50Gi
+    volumeClaimTemplate:
+       spec:
+         storageClassName: local-storage
+         accessModes: ["ReadWriteOnce"]
+         resources:
+           requests:
+             storage: 20Gi
     #    selector: {}
 
     ## Using tmpfs volume
