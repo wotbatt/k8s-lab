@@ -658,6 +658,7 @@ grafana:
     ## If true, Grafana Ingress will be created
     ##
     enabled: true
+    ingressClassName: nginx
 
     ## Annotations for Grafana Ingress
     ##
@@ -668,11 +669,6 @@ grafana:
     ##
     labels: {}
 
-    ## Hostnames.
-    ## Must be provided if Ingress is enable.
-    ##
-    # hosts:
-    #   - grafana.domain.com
     hosts: [grafana.wotbatt.com]
 
     ## Path for grafana ingress
