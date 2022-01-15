@@ -1,7 +1,6 @@
 ---
 # Install the nfs client. Start the client and create configs.
 - name: Install nfs-common on nfs clients
-  become: true
   apt:
     pkg: nfs-common
     state: present
