@@ -38,4 +38,3 @@
   when: "'k8scontrolplane' in group_names or 'k8sworkernodes' in group_name"
   tags:
     - nfs
-# ansible-playbook --ask-vault-pass --extra-vars '@pass.yaml' 
