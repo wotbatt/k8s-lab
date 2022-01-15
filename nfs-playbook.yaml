@@ -1,14 +1,12 @@
 ---
 # Install the nfs client. Start the client and create configs.
 hosts: k8sworkernodes:k8scontrolplane
-become: yes
-tasks:  
+become: true
+tasks:
   - name: Install nfs-common on nfs clients
     apt:
       pkg: nfs-common
       state: present
-      tags:
-        - nfs
 
 # Ensure service is started and enabled
   - name: Start and enable service 
@@ -27,11 +25,7 @@ tasks:
       path: /etc/fstab
       line: "192.168.1.11:/data/grafana     /mnt    nfs     defaults        0       1"
       backup: yes
-    tags:
-      - nfs
 
 #Mount -a
   - name: Perform a mount -a
     shell: mount -a
-    tags:
-      - nfs
