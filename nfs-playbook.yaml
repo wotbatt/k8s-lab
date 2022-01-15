@@ -1,6 +1,6 @@
 ---
 # Install the nfs client. Start the client and create configs.
-hosts: k8sworkernodes:k8scontrolplane
+hosts: k8scontrolplane
 become: true
 tasks:
   - name: Install nfs-common on nfs clients
