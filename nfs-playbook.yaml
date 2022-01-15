@@ -1,0 +1,41 @@
+---
+# Install the nfs client. Start the client and create configs.
+- name: Install nfs-common on nfs clients
+  become: true
+  apt:
+    pkg: nfs-common
+    state: present
+  when: "'k8scontrolplane' in group_names or 'k8sworkernodes' in group_name"
+  tags:
+    - nfs
+
+# Ensure service is started and enabled
+- name: Start and enable service 
+  service: 
+    name: nfs-common
+    state: started
+    enabled: yes
+  when: "'k8scontrolplane' in group_names or 'k8sworkernodes' in group_name" 
+
+# Create the directory where the NFS volume will be mounted 
+- name: Create the /data directory
+  shell: /usr/bin/mkdir /data
+  when: "'k8scontrolplane' in group_names or 'k8sworkernodes' in group_name"
+
+# Update /etc/fstab on client
+- name: Add the mount point to /etc/fstab on clients
+  lineinfile:
+    path: /etc/fstab
+    line: "192.168.1.11:/data/grafana     /mnt    nfs     defaults        0       1"
+    backup: yes
+  when: "'k8scontrolplane' in group_names or 'k8sworkernodes' in group_name"
+  tags:
+    - nfs
+
+#Mount -a
+- name: Perform a mount -a
+  shell: mount -a
+  when: "'k8scontrolplane' in group_names or 'k8sworkernodes' in group_name"
+  tags:
+    - nfs
+# ansible-playbook --ask-vault-pass --extra-vars '@pass.yaml' 
