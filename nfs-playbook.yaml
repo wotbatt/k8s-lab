@@ -8,13 +8,6 @@
         pkg: nfs-common
         state: present
 
-# Ensure service is started and enabled
-    - name: Start and enable service 
-      service: 
-        name: nfs-common
-        state: started
-        enabled: yes
-
 # Create the directory where the NFS volume will be mounted 
     - name: Create the /data directory
       shell: /usr/bin/mkdir /data
