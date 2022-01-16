@@ -1,6 +1,6 @@
 ---
 # Install the nfs client. Start the client and create configs.
-- hosts: k8sworkernodes
+- hosts: k8sworkernodes:k8scontrolplane
   become: true
   tasks:
     - name: Install nfs-common on nfs clients
@@ -9,14 +9,19 @@
         state: present
 
 # Create the directory where the NFS volume will be mounted 
-    - name: Create the /data directory
-      shell: /usr/bin/mkdir /data
+    - name: Create share directory on nfs-server
+      file:
+        path: "/data/grafana"
+        state: directory
+        owner: 472
+        group: 472
+        mode: '0770'
 
 # Update /etc/fstab on client
     - name: Add the mount point to /etc/fstab on clients
       lineinfile:
         path: /etc/fstab
-        line: "192.168.1.11:/data/grafana     /mnt    nfs     defaults        0       1"
+        line: "192.168.1.11:/data/grafana     /data/grafana    nfs     defaults        0       1"
         backup: yes
 
 #Mount -a
