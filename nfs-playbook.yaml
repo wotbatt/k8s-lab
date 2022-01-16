@@ -21,7 +21,7 @@
     - name: Add the mount point to /etc/fstab on clients
       lineinfile:
         path: /etc/fstab
-        line: "192.168.1.11:/data/grafana     /data/grafana    nfs     defaults        0       1"
+        line: "192.168.1.11:/data/grafana     /data/grafana    nfs     defaults        0       0"
         backup: yes
 
 #Mount -a

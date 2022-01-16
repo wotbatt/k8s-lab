@@ -1,0 +1,10 @@
+# Update /etc/fstab on client to remove erroneous mount path.
+- hosts: k8sworkernodes:k8scontrolplane
+  become: true
+  tasks:
+    - name: Remove the mnt mount point to /etc/fstab on clients
+      lineinfile:
+        path: /etc/fstab
+        line: "192.168.1.11:/data/grafana     /mnt    nfs     defaults        0       1"
+        state: absent
+        backup: yes
