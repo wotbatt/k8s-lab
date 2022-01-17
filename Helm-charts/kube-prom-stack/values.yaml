@@ -478,11 +478,11 @@ alertmanager:
     storage: {}
     volumeClaimTemplate:
       spec:
-        storageClassName: local-storage
-        accessModes: ["ReadWriteOnce"]
+        storageClassName: manual
+        accessModes: ["ReadWriteMany"]
         resources:
           requests:
-            storage: 15Gi
+            storage: 5Gi
     #  selector: {}
 
 
@@ -627,11 +627,11 @@ grafana:
     ##
   volumeClaimTemplate:
      spec:
-       storageClassName: local-storage
-       accessModes: ["ReadWriteOnce"]
+       storageClassName: manual
+       accessModes: ["ReadWriteMany"]
        resources:
          requests:
-           storage: 10Gi
+           storage: 5Gi
     #    selector: {}
 
   ## ForceDeployDatasources Create datasource configmap even if grafana deployment has been disabled
@@ -2370,11 +2370,11 @@ prometheus:
     ##
     volumeClaimTemplate:
        spec:
-         storageClassName: local-storage
-         accessModes: ["ReadWriteOnce"]
+         storageClassName: manuak
+         accessModes: ["ReadWriteMany"]
          resources:
            requests:
-             storage: 10Gi
+             storage: 5Gi
     #    selector: {}
 
     ## Using tmpfs volume
