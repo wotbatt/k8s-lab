@@ -6,11 +6,11 @@ metadata:
     type: local
 spec:
   capacity:
-    storage: 10Gi
+    storage: 25Gi
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
   persistentVolumeReclaimPolicy: Recycle
-  storageClassName: manual
+  storageClassName: ""
   nfs:
     path: "/data/grafana"
     server: 192.186.1.11
