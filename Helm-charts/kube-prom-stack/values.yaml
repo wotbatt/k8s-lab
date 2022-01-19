@@ -481,11 +481,11 @@ alertmanager:
          selector:
            matchLabels:
              app.kubernetes.io/name: prom-nfs
-         accessModes: ["ReadWriteOnce"]
+#         accessModes: ["ReadWriteOnce"]
          resources:
            requests:
              storage: 50Gi
-         volumeName: prom-storage
+#         volumeName: prom-storage
     #  selector: {}
 
 
@@ -633,11 +633,10 @@ grafana:
        selector:
          matchLabels:
            app.kubernetes.io/name: prom-nfs
-       accessModes: ["ReadWriteOnce"]
+#       accessModes: ["ReadWriteOnce"]
        resources:
          requests:
            storage: 50Gi
-       volumeName: prom-storage
     #    selector: {}
 
   ## ForceDeployDatasources Create datasource configmap even if grafana deployment has been disabled
@@ -2379,11 +2378,11 @@ prometheus:
          selector:
            matchLabels:
              app.kubernetes.io/name: prom-nfs
-         accessModes: ["ReadWriteOnce"]
+#         accessModes: ["ReadWriteOnce"]
          resources:
            requests:
              storage: 50Gi
-         volumeName: prom-storage
+#         volumeName: prom-storage
     #    selector: {}
 
     ## Using tmpfs volume
