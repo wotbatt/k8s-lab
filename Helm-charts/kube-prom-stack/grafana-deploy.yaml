@@ -80,3 +80,25 @@ spec:
     app: grafana
   sessionAffinity: None
   type: ClusterIP
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: main-ingress
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - grafana.wotbatt.com
+    secretName: ingress-cert # TLS cert for the site in k8s secrets. Same namespace
+  rules:
+  - host: grafana.wotbatt.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: grafana
+            port:
+              number: 3000
