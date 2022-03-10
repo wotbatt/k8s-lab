@@ -665,6 +665,7 @@ grafana:
     ##
     enabled: true
     ingressClassName: nginx
+    namespaceOverride: monitoring
 
     ## Annotations for Grafana Ingress
     ##
