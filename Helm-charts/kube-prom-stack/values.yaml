@@ -624,13 +624,14 @@ alertmanager:
 ##
 grafana:
   enabled: true
+  namespaceOverride: "monitoring"
   persistence:
     enabled: true
     type: pvc
     storageClassName: "local-storage"
     accessModes:
     - ReadWriteOnce
-    size: 15Gi
+    size: 25Gi
     finalizers:
     - kubernetes.io/pvc-protection
   
@@ -664,8 +665,8 @@ grafana:
     ## If true, Grafana Ingress will be created
     ##
     enabled: true
-    ingressClassName: nginx
     namespaceOverride: "monitoring"
+    ingressClassName: nginx
 
     ## Annotations for Grafana Ingress
     ##
