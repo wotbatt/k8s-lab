@@ -1,0 +1,4 @@
+1. Install yay
+2. Install containerd
+3. Copied over /etc/containerd/config.toml file from k8s control plane
+4. Install Linux-AUFS kernel modules
